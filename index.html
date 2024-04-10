@@ -24,7 +24,7 @@
             <li><a href="#sec-02">Project</a></li>
             <li><a href="#sec-03">About Me</a></li>
             <li><a href="#sec-04">Service</a></li>
-            <li><a href="#">Contact Me</a></li>
+            <li><a href="#" id="openForm">Contact Me</a></li>
         </ul>
     </nav>
     <section class="v-aligment-center-sb" style="height: 600px; padding: 80px 7% 0% 15%;" id="sec-01">
@@ -35,9 +35,13 @@
                 for more than 2 years,
                 collaborating on several projects creating UI/UX designers for applications</div>
             <div class="space-between" style="display: flex; margin: 16 0px; padding-top: 48px;">
-                <i class="fa-regular fa-envelope" style="font-size:32px ; color:white;"></i>
+                <a href="#" id="openForm_1">
+                    <i class="fa-regular fa-envelope" id="openForm" style="font-size:32px ; color:white;"></i>
+                </a>
                 <i class="fa-brands fa-instagram" style="font-size:32px ; color:white;"></i>
-                <i class="fa-brands fa-whatsapp" style="font-size:32px ; color:white;"></i>
+                <a href="#" id="openForm_2">
+                    <i class="fa-brands fa-whatsapp" id="openForm" style="font-size:32px ; color:white;"></i>
+                </a>
                 <button
                     style="background: #E8D8C4; width: 180px; height: 56px; display: flex; align-items: center; justify-content: space-evenly; padding: 0 8px; border-radius: 8px;">
                     <div class="text-small-black">Download CV</div>
@@ -73,9 +77,13 @@
                 <div class="center"
                     style="background: #B1947099; width: 256px; height: 52px; align-items: center; justify-content: center;">
                     <div style="display: flex; align-items: center; justify-content: space-evenly;">
-                        <i class="fa-regular fa-envelope" style="font-size:32px ; color:white;"></i>
+                        <a href="#" id="openForm_3">
+                            <i class="fa-regular fa-envelope" style="font-size:32px ; color:white;"></i>
+                        </a>
                         <i class="fa-brands fa-instagram" style="font-size:32px ; color:white;"></i>
-                        <i class="fa-brands fa-whatsapp" style="font-size:32px ; color:white;"></i>
+                        <a href="#" id="openForm_4">
+                            <i class="fa-brands fa-whatsapp" style="font-size:32px ; color:white;"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -169,11 +177,151 @@
             <div class="text-small-white">Syeila Vadila M</div>
             <div class="text-description-white" style="text-justify: inter-word; font-size: 10px;">© Copyrigth 2024. All
                 Rights Reserved</div>
-            <i class="fa-regular fa-envelope" style="font-size:24px; color:white;"></i>
+            <i class="fa-regular fa-envelope" id="openForm" style="font-size:24px; color:white;"></i>
             <i class="fa-brands fa-instagram" style="font-size:24px; color:white;"></i>
-            <i class="fa-brands fa-whatsapp" style="font-size:24px; color:white;"></i>
+            <i class="fa-brands fa-whatsapp" id="openForm" style="font-size:24px; color:white;"></i>
         </div>
     </section>
+
+    <div class="overlay"></div>
+
+    <div id="popupForm" class="container">
+        <div class="text">
+            Contact Me
+        </div>
+        <form action="#" id="forms">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" name="first_name" required>
+                    <div class="underline"></div>
+                    <label for="">First Name</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="last_name" required>
+                    <div class="underline"></div>
+                    <label for="">Last Name</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="tel" name="phone" required>
+                    <div class="underline"></div>
+                    <label for="">Phone</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" name="email" required>
+                    <div class="underline"></div>
+                    <label for="">Email</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <textarea rows="8" cols="80" required name="message"></textarea>
+                    <br />
+                    <div class="underline"></div>
+                    <label for="">Write your message</label>
+                    <br />
+                </div>
+            </div>
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="submit">
+                </div>
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input id="closeForm" type="button" value="cancel">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Open the form and show the overlay
+            $('[id^=openForm]').click(function () {
+                $("#popupForm").fadeIn();
+                $(".overlay").fadeIn();
+                $("#forms")[0].reset(); // Reset the form
+                $("div.error").remove(); // Remove any existing error labels
+                return false; // Prevent default link behavior
+            });
+
+            // Close the form and hide the overlay
+            $("#closeForm").click(function () {
+                $("#popupForm").fadeOut();
+                $(".overlay").fadeOut();
+                $("#forms")[0].reset(); // Reset the form
+                $("div.error").remove(); // Remove any existing error labels
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#forms').validate({ // initialize the plugin
+                rules: {
+                    first_name: {
+                        required: true,
+                        minlength: 2,
+                    },
+                    last_name: {
+                        required: true,
+                    },
+                    phone: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    message: {
+                        minlength: 30,
+                    }
+                },
+                errorElement: 'div',
+            });
+        });
+    </script>
+
+    <script>
+        // Form submission
+        $("#forms").submit(function (event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Validate form inputs
+            var isValid = true;
+            $("#forms input, #forms textarea").each(function () {
+                if (!$(this).val()) {
+                    isValid = false;
+                    $(this).addClass("invalid");
+                }
+                else {
+                    $(this).removeClass("invalid");
+                }
+            });
+
+            // If form is valid, submit
+            if (isValid) {
+                alert("your messages has submitted successfully!");
+                // You can submit the form using AJAX or remove the preventDefault() and let it submit normally
+                $("#popupForm").fadeOut();
+                $(".overlay").fadeOut();
+            }
+        });
+
+        // Remove validation class on input change
+        $("#forms input, #forms textarea").on("input", function () {
+            $(this).removeClass("invalid");
+        });
+    </script>
+
     <script>
         window.onscroll = function () { myFunction() };
 
